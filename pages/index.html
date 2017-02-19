@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Photon</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/frameworks/photon/css/photon.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <!-- Scripts -->
+    <!-- Src Reference to jquery doesn't works. Thus requiring it..! -->
+    <script> window.jQuery = window.$ = require("../assets/js/jquery.min.js")</script>
+  </head>
+
+  <body>
+    <div>
+      <h3 class="app-title">Snippetz<span class='app-slogan'> In <span class="icon icon-heart" style="color:red;"></span> with code</span></h3>
+    </div>
+    <div class="window">
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane-sm sidebar" style="overflow-y: scroll; border-top:1px solid #ccc;min-width:230px;">
+            <ul id="snippet-list" class="list-group">
+              <li class="list-group-header">
+                <h5>List of snippets</h5>
+                <details>
+                  <summary>Sort</summary>
+                  <span>lang:</span>
+                    <select>
+                      <option>all</option>
+                      <option>c</option>
+                      <option>c++</option>
+                      <option>python</option>
+                      <option>java</option>
+                    </select>
+                </details>
+              </li>
+            </ul>
+          </div>
+
+          <!--
+            Right pane to display editor.
+            Editor powered by monaco.
+           -->
+          <div class="pane border-box">
+            <div class="toolbar-actions">
+
+              <button class="btn btn-default" id="snippet-new">
+                <span class="icon icon-plus icon-text"></span>
+                New Snippet
+              </button>
+
+              <button class="btn btn-default" id="snippet-save">
+                <span class="icon icon-floppy icon-text"></span>
+                Save
+              </button>
+
+              <button class="btn btn-default" id="snippet-delete">
+                <span class="icon icon-trash icon-text"></span>
+                Delete
+              </button>
+
+
+              <button class="btn btn-default pull-right">
+                <span>language: </span>
+                <select id="language-changer">
+                  <option>c</option>
+                  <option>c++</option>
+                  <option>javascript</option>
+                  <option>java</option>
+                  <option>python</option>
+                  <option>go</option>
+                </select>
+              </button>
+
+              <button class="btn btn-default pull-right">
+                <span>theme: </span>
+                <select id="theme-changer">
+                  <option>light</option>
+                  <option>dark</option>
+                  <option>high contrast</option>
+                </select>
+              </button>
+            </div>
+            <hr/>
+            <div class="snippet-detail">
+              <h5 class="input-head">Title</h5>
+                <input class="form-control" id="snippet-title" type="text" placeholder="Title">
+              <h5 class="input-head">Description</h5>
+                <textarea class="form-control"  id="snippet-desc" placeholder="Description"></textarea>
+            </div>
+            <div id="container" class="editor-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  <!-- **************************Monaco operations****************************- -->
+  <script>
+    // Monaco uses a custom amd loader that over-rides node's require.
+    // Keep a reference to node's require so we can restore it after executing the amd loader file.
+    var nodeRequire = global.require;
+  </script>
+  <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script>
+    // Save Monaco's amd require and restore Node's require
+    var amdRequire = global.require;
+    global.require = nodeRequire;
+  </script>
+
+  <script>
+    // require node modules before loader.js comes in
+    var path = require('path');
+
+    function uriFromPath(_path) {
+      var pathName = path.resolve(_path).replace(/\\/g, '/');
+      if (pathName.length > 0 && pathName.charAt(0) !== '/') {
+        pathName = '/' + pathName;
+      }
+      return encodeURI('file://' + pathName);
+    }
+
+    amdRequire.config({
+      baseUrl: uriFromPath(path.join(__dirname, '../node_modules/monaco-editor/min'))
+    });
+
+    // workaround monaco-css not understanding the environment
+    self.module = undefined;
+
+    // workaround monaco-typescript not understanding the environment
+    self.process.browser = true;
+
+    amdRequire(['vs/editor/editor.main'], function() {
+      window.editor = monaco.editor.create(document.getElementById('container'), {
+        value: [
+
+        ].join('\n'),
+        language: 'javascript'
+      });
+    });
+  </script>
+  <!-- ***********************************************************************- -->
+
+  <!-- Load event script for handling element actions-->
+  <script src="../assets/js/events.js"></script>
+
+</html>

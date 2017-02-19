@@ -1,6 +1,13 @@
 {
   "name": "snippetz",
   "version": "0.1.0",
-  "main": "main.js",
-  "author" : "raghu"
+  "main": "main/index.js",
+  "author": "raghu",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "monaco-editor": "0.8.1",
+    "nedb": "1.8.0"
+  }
 }

@@ -1,0 +1,30 @@
+.window {
+  top: 65px;
+}
+.app-title {
+  padding-left: 4px;
+}
+.app-slogan {
+  font-size:10px;
+}
+.border-box {
+  border-top:1px;
+  border-style: solid;
+  border-color: #ccc;
+}
+hr {
+  margin: 0px;
+}
+.snippet-detail {
+  padding-left:30px;
+  padding-right:200px;
+  padding-bottom:5px
+}
+.input-head {
+  margin-top:5px
+}
+.editor-container {
+  width:1048px;
+  height:500px;
+}
+summary:focus {outline:0;}
