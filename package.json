@@ -1,8 +1,5 @@
 {
-  "name": "snippetz",
-  "description" : "Simple code snippets manager.",
-  "version": "0.1.0",
-  "main": "app/main/index.js",
+  "repositor": "inventcode/snippetz",
   "author": "raghu",
   "build": {
     "linux": {
@@ -13,16 +10,13 @@
     }
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron app",
     "build-mac": "electron-packager . --platform=darwin --overwrite --electron-version=1.4.15",
     "pack": "build --dir",
     "dist": "build -mwl --x64 --ia32"
   },
-  "dependencies": {
-    "monaco-editor": "0.8.1",
-    "nedb": "1.8.0"
-  },
   "devDependencies": {
-    "electron": "1.4.5"
+    "electron": "1.4.5",
+    "electron-builder": "13.9.0"
   }
 }
