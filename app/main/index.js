@@ -2,6 +2,7 @@ const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
 
+const menu = require('./menu').menu;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -21,8 +22,9 @@ let createWindow =  () => {
     slashes: true
   }))
 
+  Menu.setApplicationMenu(menu)
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

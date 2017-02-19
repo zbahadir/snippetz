@@ -1,13 +1,28 @@
 {
   "name": "snippetz",
+  "description" : "Simple code snippets manager.",
   "version": "0.1.0",
-  "main": "main/index.js",
+  "main": "app/main/index.js",
   "author": "raghu",
+  "build": {
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ]
+    }
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build-mac": "electron-packager . --platform=darwin --overwrite --electron-version=1.4.15",
+    "pack": "build --dir",
+    "dist": "build -mwl --x64 --ia32"
   },
   "dependencies": {
     "monaco-editor": "0.8.1",
     "nedb": "1.8.0"
+  },
+  "devDependencies": {
+    "electron": "1.4.5"
   }
 }

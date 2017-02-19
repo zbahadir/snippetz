@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Photon</title>
+    <title>snippetz</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../assets/frameworks/photon/css/photon.css">
     <link rel="stylesheet" href="../assets/css/style.css" />
@@ -102,7 +102,7 @@
     // Keep a reference to node's require so we can restore it after executing the amd loader file.
     var nodeRequire = global.require;
   </script>
-  <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script src="../../node_modules/monaco-editor/min/vs/loader.js"></script>
   <script>
     // Save Monaco's amd require and restore Node's require
     var amdRequire = global.require;
@@ -122,7 +122,7 @@
     }
 
     amdRequire.config({
-      baseUrl: uriFromPath(path.join(__dirname, '../node_modules/monaco-editor/min'))
+      baseUrl: uriFromPath(path.join(__dirname, '../../node_modules/monaco-editor/min'))
     });
 
     // workaround monaco-css not understanding the environment
