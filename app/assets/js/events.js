@@ -26,6 +26,13 @@
         jQuery("#language-changer").append(`<option>${lang.id}</option`);
       })
     }
+    //Caching the previous response of theme change and incorporating it
+    var cachedTheme = localStorage.getItem("monaco_theme");
+    var cachedThemeName = localStorage.getItem("monaco_vis_theme");
+    if (cachedTheme != null && cachedTheme != "") {
+      editor.updateOptions({'theme': cachedTheme});
+      jQuery("#theme-changer").val(cachedThemeName);
+    }
   })
 
 
@@ -98,7 +105,11 @@
   //Change theme of monaco on theme change
   jQuery("#theme-changer").on("change", () => {
     let theme = jQuery("#theme-changer").val();
-    editor.updateOptions({'theme': THEMES[theme]})
+    editor.updateOptions({'theme': THEMES[theme]});
+    //Saving the theme state
+    //Can be used for setting by default during next app start
+    localStorage.setItem("monaco_theme", THEMES[theme]);
+    localStorage.setItem("monaco_vis_theme", theme);
   });
 
   //Event listener for new snippet
