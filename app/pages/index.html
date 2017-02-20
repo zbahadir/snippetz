@@ -19,13 +19,13 @@
       <div class="window-content">
         <div class="pane-group">
           <div class="pane-sm sidebar" style="overflow-y: scroll; border-top:1px solid #ccc;min-width:230px;">
-            <ul id="snippet-list" class="list-group">
+            <ul class="list-group">
               <li class="list-group-header">
                 <h5><b>List of snippets</b></h5>
                 <details>
-                  <summary>Sort</summary>
+                  <summary>Filter</summary>
                   <span>lang:</span>
-                    <select>
+                    <select id="language-filter">
                       <option>all</option>
                       <option>c</option>
                       <option>c++</option>
@@ -35,6 +35,8 @@
                 </details>
               </li>
             </ul>
+            <hr />
+            <ul id="snippet-list" class="list-group"></ul>
           </div>
 
           <!--

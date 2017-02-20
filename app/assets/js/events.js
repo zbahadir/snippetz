@@ -113,7 +113,10 @@
         timeStamp: new Date().toISOString()
       }, function(err, doc) {
         window.current = doc._id;
-        addSnippettoView(doc);
+        //Add to the left snippet list pane only if the filter is 'all' or snippet language
+        if (jQuery("#language-filter").val() == "all" || jQuery("#language-filter").val() == lang) {
+          addSnippettoView(doc);
+        }
       });
     }
     else {
@@ -148,6 +151,21 @@
       //Remove snippet from the list
       jQuery(`#${window.current}`).parent().remove();
       newSnippet();
+    });
+  });
+
+  //Event listener for snippet filter by language
+  jQuery("#language-filter").on("change", (e) => {
+    let lang = jQuery(e.currentTarget).val();
+    let query = {};
+    if (lang != "all") {
+      query = {snippetLang: lang};
+    }
+    snippet.get(query, (err, docs) => {
+      jQuery("#snippet-list").html("");
+      docs.forEach((doc) => {
+        addSnippettoView(doc);
+      });
     });
   });
 
