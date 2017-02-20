@@ -1,4 +1,4 @@
-/node_modules
+**/node_modules
 **/.DS_Store
 /snippetz-linux-ia32
 /snippetz-darwin-x64

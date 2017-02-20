@@ -2,11 +2,11 @@
   "name": "snippetz",
   "description" : "Simple code snippets manager.",
   "version": "0.1.0",
-  "main": "app/main/index.js",
+  "main": "main/index.js",
   "license": "MIT",
   "author": {
     "name": "raghuram",
-    "email": "raghu12133@gmail.com",
+    "email": "raghu12133@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/inventcode/snippetz/issues"

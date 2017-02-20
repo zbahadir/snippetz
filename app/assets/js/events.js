@@ -35,6 +35,7 @@
     jQuery("#snippet-title").val("");
     jQuery("#snippet-desc").val("");
     editor.setValue("");
+    monaco.editor.setModelLanguage(editor.getModel(), "c");
     window.current = null;
   }
 
