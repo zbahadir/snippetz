@@ -27,10 +27,6 @@
                   <span>lang:</span>
                     <select id="language-filter">
                       <option>all</option>
-                      <option>c</option>
-                      <option>c++</option>
-                      <option>python</option>
-                      <option>java</option>
                     </select>
                 </details>
               </li>
@@ -65,12 +61,6 @@
               <button class="btn btn-default pull-right">
                 <span>language: </span>
                 <select id="language-changer">
-                  <option>c</option>
-                  <option>c++</option>
-                  <option>javascript</option>
-                  <option>java</option>
-                  <option>python</option>
-                  <option>go</option>
                 </select>
               </button>
 
@@ -138,8 +128,11 @@
         value: [
 
         ].join('\n'),
-        language: 'c'
+        language: 'plaintext'
       });
+      //posing a message to window, stating monaco has been loaded.
+      //tasks dependent on monaco will continue
+      window.postMessage("monaco_loaded", "*");
     });
   </script>
   <!-- ***********************************************************************- -->

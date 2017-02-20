@@ -15,6 +15,21 @@
     window.current = null;
   })
 
+  //Add all languages to the filter language select element
+  //Listening for window event emitted by monaco loader, after being loaded.
+  window.addEventListener("message", (e) => {
+    if (e.data == "monaco_loaded") {
+      monaco.languages.getLanguages().forEach((lang) => {
+        //adding to filter language select
+        jQuery("#language-filter").append(`<option>${lang.id}</option`);
+        //adding to language changer
+        jQuery("#language-changer").append(`<option>${lang.id}</option`);
+      })
+    }
+  })
+
+
+
   //On click of snippet in the list -> view it
   //Get the details from the database with id & display details
   let renderSnippet = (id) => {
@@ -35,7 +50,8 @@
     jQuery("#snippet-title").val("");
     jQuery("#snippet-desc").val("");
     editor.setValue("");
-    monaco.editor.setModelLanguage(editor.getModel(), "c");
+    monaco.editor.setModelLanguage(editor.getModel(), "plaintext");
+    jQuery("#language-changer").val("plaintext");
     window.current = null;
   }
 
