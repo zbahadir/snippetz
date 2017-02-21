@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="https://raw.githubusercontent.com/inventcode/snippetz/master/build/icons/icon.png_96x96.png?raw=true" /><br/>
   <img src="https://raw.githubusercontent.com/inventcode/snippetz/master/app/assets/snippetz.png?raw=true" height="50" width="150" />
   <h3 align="center">Snippetz</h3>
   <p align="center">
