@@ -27,12 +27,15 @@
       })
     }
     //Caching the previous response of theme change and incorporating it
-    var cachedTheme = localStorage.getItem("monaco_theme");
-    var cachedThemeName = localStorage.getItem("monaco_vis_theme");
+    let cachedTheme = localStorage.getItem("monaco_theme");
+    let cachedThemeName = localStorage.getItem("monaco_vis_theme");
+    let tabSize = localStorage.getItem("monaco_tab");
     if (cachedTheme != null && cachedTheme != "") {
       editor.updateOptions({'theme': cachedTheme});
       jQuery("#theme-changer").val(cachedThemeName);
     }
+    //Set tabsize by default
+    editor.getModel().updateOptions({'tabSize': tabSize});
   })
 
 
@@ -112,6 +115,15 @@
     localStorage.setItem("monaco_vis_theme", theme);
   });
 
+  //Change tabsize of monaco on tab change
+  jQuery("#tabsize-changer").on("change", (e) => {
+    let tab = jQuery(e.currentTarget).val();
+    editor.getModel().updateOptions({'tabSize': tab});
+    //Saving the tab state
+    //Can be used for setting by default during next app start
+    localStorage.setItem("monaco_tab", tab);
+  })
+
   //Event listener for new snippet
   jQuery("#snippet-new").on("click", () => {
     newSnippet();
@@ -138,7 +150,7 @@
         snippetTitle: title,
         snippetDesc: desc,
         timeStamp: new Date().toISOString()
-      }, function(err, doc) {
+      }, (err, doc) => {
         window.current = doc._id;
         //Add to the left snippet list pane only if the filter is 'all' or snippet language
         if (jQuery("#language-filter").val() == "all" || jQuery("#language-filter").val() == lang) {
@@ -158,7 +170,7 @@
         snippetTitle: title,
         snippetDesc: desc,
         timeStamp: new Date().toISOString()
-      }, {}, function(err, doc) {
+      }, {}, (err, doc) => {
         // Updating the view of the snippet in the left pane
         let date = new Date().toISOString().split("T")[0];
         jQuery(`#${window.current}`).html(`
