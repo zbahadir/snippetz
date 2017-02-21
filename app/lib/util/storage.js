@@ -11,7 +11,7 @@ let HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 //Create an instance of the database class
 //Provide the location of storage
 let db = new Datastore({
-  filename: `${HOME}/.snippetz`,
+  filename: `${HOME}/snipz/.snippetz`,
   autoload: true
 });
 
