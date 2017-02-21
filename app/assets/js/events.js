@@ -1,3 +1,5 @@
+const {ipcRenderer} = require('electron');
+
 (() => {
   let snippet = require("../lib/snippet");
 
@@ -207,5 +209,23 @@
       });
     });
   });
+
+  //--------- Inter process communication ---------
+  //shortcuts
+  ipcRenderer.on("shortcut",(event, command) => {
+    switch (command) {
+      case "snippet-new":
+        jQuery("#snippet-new").click();
+        break;
+      case "snippet-save":
+        jQuery("#snippet-save").click();
+        break;
+      case "snippet-delete":
+        jQuery("#snippet-delete").click();
+        break;
+      case "default":
+        console.log("unkown command");
+    }
+  })
 
 })();

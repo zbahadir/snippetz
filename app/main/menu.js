@@ -1,4 +1,9 @@
-const {app, Menu} = require('electron')
+const {app, Menu, BrowserWindow} = require('electron')
+
+function sendSignal(command) {
+  const win = BrowserWindow.getAllWindows()[0]
+  win.webContents.send("shortcut", command)
+}
 
 const template = [
   {
@@ -34,14 +39,34 @@ const template = [
     ]
   },
   {
-    label: 'View',
+    label: 'Snippet',
     submenu: [
       {
-        role: 'reload'
+        label: 'New snippet',
+        accelerator: 'CmdOrCtrl+Shift+N',
+        click () {
+          sendSignal('snippet-new');
+        }
       },
       {
-        role: 'toggledevtools'
+        label: 'Save',
+        accelerator: 'CmdOrCtrl+Shift+S',
+        click () {
+          sendSignal('snippet-save');
+        }
       },
+      {
+        label: 'Delete',
+        accelerator: 'CmdOrCtrl+Shift+D',
+        click () {
+          sendSignal('snippet-delete');
+        }
+      }
+    ]
+  },
+  {
+    label: 'View',
+    submenu: [
       {
         type: 'separator'
       },
@@ -70,6 +95,27 @@ const template = [
       },
       {
         role: 'close'
+      },
+      {
+        label: 'Close',
+        accelerator: 'CmdOrCtrl+W',
+        role: 'close'
+      },
+      {
+        label: 'Minimize',
+        accelerator: 'CmdOrCtrl+M',
+        role: 'minimize'
+      },
+      {
+        label: 'Zoom',
+        role: 'zoom'
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Bring All to Front',
+        role: 'front'
       }
     ]
   },
@@ -77,9 +123,15 @@ const template = [
     role: 'help',
     submenu: [
       {
-        label: `Learn More`,
+        label: `Learn more about snippetz`,
         click () {
           require('electron').shell.openExternal('https://github.com/inventcode/snippetz')
+        }
+      },
+      {
+        label: `Report Issue / Bug`,
+        click () {
+          require('electron').shell.openExternal('https://github.com/inventcode/snippetz/issues')
         }
       }
     ]
@@ -129,47 +181,16 @@ if (process.platform === 'darwin') {
       }
     ]
   })
-  // Edit menu.
-  template[1].submenu.push(
-    {
-      type: 'separator'
-    },
-    {
-      label: 'Speech',
-      submenu: [
-        {
-          role: 'startspeaking'
-        },
-        {
-          role: 'stopspeaking'
-        }
-      ]
-    }
-  )
-  // Window menu.
-  template[3].submenu = [
-    {
-      label: 'Close',
-      accelerator: 'CmdOrCtrl+W',
-      role: 'close'
-    },
-    {
-      label: 'Minimize',
-      accelerator: 'CmdOrCtrl+M',
-      role: 'minimize'
-    },
-    {
-      label: 'Zoom',
-      role: 'zoom'
-    },
-    {
-      type: 'separator'
-    },
-    {
-      label: 'Bring All to Front',
-      role: 'front'
-    }
-  ]
+}
+else {
+  template.unshift({
+    label: 'File',
+    submenu: [
+      {
+        role: 'quit'
+      }
+    ]
+  })
 }
 
 const menu = Menu.buildFromTemplate(template)
