@@ -27,6 +27,7 @@ Delete snippet         | <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>D</kbd> or <kbd>Ct
 - Editor with autocomplete, syntax highlighter and themes.
 - Supports most languages
 - Could be used as simple notes taking app.
+
 ## Bugs & Issues
 Any bug (or) issue can be raised under issues section. Pull request is welcomed.
 ## License
