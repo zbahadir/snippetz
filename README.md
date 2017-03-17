@@ -16,7 +16,9 @@ Download [here](https://github.com/inventcode/snippetz/releases).
 <p align="center">
   <img src="https://raw.githubusercontent.com/inventcode/snippetz/master/extra/screenshots/screenshot-1.png?raw=true" />
 </p>
+
 ## Keyboard Shortcuts
+
 Description            | Keys
 -----------------------| -----------------------
 New snippet            | <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>N</kbd> or <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>N</kbd>
